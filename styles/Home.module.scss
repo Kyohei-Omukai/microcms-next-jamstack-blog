@@ -1,10 +1,20 @@
+@import "set.scss"; //設定を呼び出し
+
 .main {
-  width: 960px;
+  width: calc(100vw - 64px);
+  max-width: 960px;
   margin: 80px auto;
+  @include media(mobile){
+    margin: 40px auto;
+  }
 }
 .entryBody {
-  width: 960px;
+  width: calc(100vw - 64px);
+  max-width: 960px;
   margin: 80px auto;
+  @include media(mobile){
+    margin: 40px auto;
+  }
   .eyecatch{
     margin: 40px 0;
   }
@@ -16,7 +26,7 @@
 }
 .title {
   margin: 20px 0;
-  font-size: 40px;
+  font-size: clamp(26px, 4vw ,40px);
   line-height: 1.3;
 }
 .publishedAt {
@@ -109,8 +119,13 @@
     padding: 40px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 24px;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    @include media(sp){
+      padding: 24px 0;
+      gap: 16px;
+    }
     &:hover{
       background: rgba(255,255,255,.5);
     }
@@ -123,5 +138,8 @@
   }
   .eyecatch{
     width: 30%;
+    @include media(mobile){
+      width: 100%;
+    }
   }
 }
