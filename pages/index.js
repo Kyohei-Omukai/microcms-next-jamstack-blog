@@ -9,7 +9,16 @@ export default function Home({ blog }) {
         {blog.map((blog) => (
           <li key={blog.id} className={styles.entryList}>
             <Link href={`/blog/${blog.id}`}>
-              <h2 className={styles.entryTitle}>{blog.title}</h2>
+              {blog.eyecatch && (
+              <div className={styles.eyecatch}>
+                <img src={blog.eyecatch?.url} alt="" />
+              </div>
+              )}
+              <div>
+                <h2 className={styles.entryTitle}>{blog.title}</h2>
+                <p className={styles.publishedAt}>{blog.publishedAt}</p>
+                <p className={styles.category}>{blog.category && blog.category.name}</p>
+              </div>
             </Link>
           </li>
         ))}

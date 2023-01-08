@@ -3,9 +3,17 @@ import styles from '../../styles/Home.module.scss';
 
 export default function BlogId({ blog }) {
   return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>{blog.title}</h1>
-      <p className={styles.publishedAt}>{blog.publishedAt}</p>
+    <main className={styles.entryBody}>
+      <div className={styles.metaHead}>
+        <h1 className={styles.title}>{blog.title}</h1>
+        <p className={styles.publishedAt}>{blog.publishedAt}</p>
+        <p className={styles.category}>{blog.category && blog.category.name}</p>
+      </div>
+      {blog.eyecatch && (
+      <div className={styles.eyecatch}>
+        <img src={blog.eyecatch?.url} alt="" />
+      </div>
+      )}
       <div
         dangerouslySetInnerHTML={{
           __html: `${blog.content}`,
