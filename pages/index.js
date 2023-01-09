@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { client } from "../libs/client";
+import { Pagination } from '../components/Pagination';
 import styles from '../styles/Home.module.scss';
 
-export default function Home({ blog }) {
+export default function Home({ blog, totalCount }) {
   return (
     <main className={styles.main}>
       <ul>
@@ -23,17 +24,19 @@ export default function Home({ blog }) {
           </li>
         ))}
       </ul>
+      <Pagination totalCount={totalCount} />
     </main>
   );
 }
 
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: "blog" });
+  const data = await client.get({ endpoint: "blog", queries: { offset: 0, limit: 5 } });
 
   return {
     props: {
       blog: data.contents,
+      totalCount: data.totalCount
     },
   };
 };
